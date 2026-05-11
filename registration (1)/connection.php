@@ -2,7 +2,7 @@
 <?php
 error_reporting(0);
 
-$conn = mysqli_connect('localhost', 'u630071588_kriyamahotsav', 'Kriya@68928', 'u630071588_kriyamahotsav');
+$conn = mysqli_connect('localhost', 'root', '', 'test');
 
 
 if ($conn) 
