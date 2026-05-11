@@ -66,7 +66,7 @@
                 </head>
                 <body>
                   <div class='outer-container'>
-                    <img src="https://matecia.iddllp.com/ex/logo.jpg" alt="Header Image" class="header-img">
+                    <img src="#" alt="Header Image" class="header-img">
                     <div class='inner-container' id='contentToSave'>
                       <div class='badge-content'>
                         <h4>
