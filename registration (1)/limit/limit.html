@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>limit</title>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+	<form id="limitForm">
+
+<label for="city">Choose a city:</label>
+<select name="city" id="city">
+  <option value="">Select City</option>
+  <option value="1">Mum</option>
+  <option value="Guj">Guj</option>
+  <option value="Gala Dinner">Bih</option>
+  <option value="Cinematography: From Frame to Feeling: The
+Cinematographer’s Craft">Del</option>
+</select>
+<br>
+<span id="err_limit"></span>
+
+<button type="button" id="checkBtn">Check</button>
+
+	</form>
+	<script>
+		function checkLimit() {
+			let city_raw = ($('#city').val() || '').trim();
+			let city = city_raw ? parseInt(city_raw, 10) : null;
+
+			if (city === '') {
+				$('#err_limit').text('Please select a city');
+				return;
+			}
+
+			$.ajax({
+				url: 'check_limit.php',
+				type: 'POST',
+				data: { city: city },
+				success: function (response) {
+					const status = (response || '').trim();
+					if (status === 'exists') {
+						$('#err_limit').text('Sold Out');
+						// Disable only the currently selected option
+						$('#city option[value="' + city + '"]').prop('disabled', true);
+					} else if (status === 'available') {
+						$('#err_limit').text('');
+						$('#city option[value="' + city + '"]').prop('disabled', false);
+					} else if (status === 'no_city_provided') {
+						$('#err_limit').text('No city provided');
+					} else {
+						$('#err_limit').text('Unexpected response');
+					}
+				},
+				error: function () {
+					$('#err_limit').text('Request error');
+				}
+			});
+		}
+
+		// Check when dropdown changes
+		$('#city').on('change', function() {
+			checkLimit();
+		});
+
+		// Button to manually check
+		$('#checkBtn').on('click', function() {
+			checkLimit();
+		});
+
+		// Also check on page load (if a value is preselected)
+		$(function(){
+			if ($('#city').val()) checkLimit();
+		});
+	</script>
+
+</body>
+</html>
