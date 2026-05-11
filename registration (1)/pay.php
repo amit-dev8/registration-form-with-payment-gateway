@@ -9,9 +9,9 @@
 </html>
 <?php
 $host = "localhost";
-$username = "u630071588_kriyamahotsav";
-$password = "Kriya@68928";
-$dbname = "u630071588_kriyamahotsav";
+$username = "root";
+$password = "";
+$dbname = "test";
 
 
 $conn = mysqli_connect($host, $username, $password, $dbname);
@@ -256,7 +256,7 @@ if (!empty($ccodes)) {
         CURLOPT_POSTFIELDS     => json_encode($orderData),
 
         // ✅ CA CERTIFICATE IMPLEMENTATION
-        CURLOPT_CAINFO         => "/home/u630071588/domains/iddllp.com/public_html/cacert.pem",
+        CURLOPT_CAINFO         => "your link",
         CURLOPT_SSL_VERIFYPEER => true,
         CURLOPT_SSL_VERIFYHOST => 2,
         CURLOPT_SSLVERSION     => CURL_SSLVERSION_TLSv1_2,
@@ -298,9 +298,9 @@ if (!empty($ccodes)) {
     $checkoutData = [
         "key"         => $keyId,
         "amount"      => $orderData['amount'],
-        "name"        => "INTERFACE DATA AND DESIGN LLP",
+        "name"        => "company name",
         "description" => "Payment for Registration",
-        "image"       => "https://matecia.iddllp.com/ex/logo.jpg",
+        "image"       => "replace image",
         "order_id"    => $_SESSION['razorpay_order_id'],
         "prefill"     => [
             "name"    => $name,
