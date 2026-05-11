@@ -1,5 +1,5 @@
 <?php
-include('connection.php');
+require('connection.php');
 // Fetch sessions with prices from DB.
 $all_sessions_res = mysqli_query($conn, "SELECT id, day, time_slot, sessions_name, IFNULL(price,0) AS price, IFNULL(value,0) AS discount_eligible FROM day1_sessions");
 $sessions = [];
