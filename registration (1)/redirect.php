@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("connection.php");
+require("connection.php");
 
 if ($conn->connect_error) {
     die("DB Connection Failed: " . $conn->connect_error);
